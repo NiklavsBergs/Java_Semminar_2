@@ -52,8 +52,28 @@ public class Student {
 	}
 
 	public void setSurname(String surname) {
-		this.surname = surname;
+		if(surname.matches("[A-ZĒŪĪĻĶĢŠĀČŅŽ]{1}[a-zēūīļķģšāčņž]+[-]?([A-ZĒŪĪĻĶĢŠĀČŅŽ]{1}[a-zēūīļķģšāčņž]+)?")) {
+			this.surname = surname;
+		}
+		else {
+			this.surname = "Unknown";
+		}
 	}
+
+	public String getPersonCode() {
+		return personCode;
+	}
+
+	public void setPersonCode(String personCode) {
+		if(personCode.matches("[0-9]{6}[-][0-9]{5}")) {
+			this.personCode = personCode;
+		}
+		else {
+			this.personCode = "000000-00000";
+		}
+	}
+	
+	
 	
 	
 }
