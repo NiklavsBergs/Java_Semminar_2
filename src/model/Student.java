@@ -6,7 +6,8 @@ public class Student {
 	private String surname;
 	private Faculty faculty;
 	private String personCode;
-	private static long idCounter = 10000;
+	
+	private static long idCounter = 0;
 	
 	public Student() {
 		id = idCounter;
@@ -16,7 +17,7 @@ public class Student {
 		idCounter++;
 	}
 	
-	public Student(long p_idIn, String nameIn, String surnameIn, String personCodeIn) {
+	public Student(String nameIn, String surnameIn, String personCodeIn) {
 		id = idCounter;
 		name = nameIn;
 		surname = surnameIn;
@@ -24,12 +25,13 @@ public class Student {
 		idCounter++;
 	}
 
-	public long getSt_id() {
+	public long getId() {
 		return id;
 	}
-
-	public void setSt_id(long id) {
-		this.id = id;
+	
+	public void setId() {
+		id = idCounter;
+		idCounter++;
 	}
 
 	public String getName() {
@@ -38,7 +40,7 @@ public class Student {
 
 	//Regex [A-ZĒŪĪĻĶĢŠĀČŅŽ]{1}[a-zēūīļķģšāčņž]+[ ]?([A-ZĒŪĪĻĶĢŠĀČŅŽ]{1}[a-zēūīļķģšāčņž]+)?
 	public void setName(String name) {
-		if(name.matches("[A-ZĒŪĪĻĶĢŠĀČŅŽ]{1}[a-zēūīļķģšāčņž]+[ ]?([A-ZĒŪĪĻĶĢŠĀČŅŽ]{1}[a-zēūīļķģšāčņž]+)?")) {
+		if(name!=null && name.matches("[A-ZĒŪĪĻĶĢŠĀČŅŽ]{1}[a-zēūīļķģšāčņž]+[ ]?([A-ZĒŪĪĻĶĢŠĀČŅŽ]{1}[a-zēūīļķģšāčņž]+)?")) {
 			this.name = name;
 		}
 		else {
@@ -52,7 +54,7 @@ public class Student {
 	}
 
 	public void setSurname(String surname) {
-		if(surname.matches("[A-ZĒŪĪĻĶĢŠĀČŅŽ]{1}[a-zēūīļķģšāčņž]+[-]?([A-ZĒŪĪĻĶĢŠĀČŅŽ]{1}[a-zēūīļķģšāčņž]+)?")) {
+		if(surname!=null && surname.matches("[A-ZĒŪĪĻĶĢŠĀČŅŽ]{1}[a-zēūīļķģšāčņž]+[-]?([A-ZĒŪĪĻĶĢŠĀČŅŽ]{1}[a-zēūīļķģšāčņž]+)?")) {
 			this.surname = surname;
 		}
 		else {
@@ -65,13 +67,28 @@ public class Student {
 	}
 
 	public void setPersonCode(String personCode) {
-		if(personCode.matches("[0-9]{6}[-][0-9]{5}")) {
+		if(personCode!=null && personCode.matches("[0-9]{6}[-][0-9]{5}")) {
 			this.personCode = personCode;
 		}
 		else {
 			this.personCode = "000000-00000";
 		}
 	}
+
+	public Faculty getFaculty() {
+		return faculty;
+	}
+
+	public void setFaculty(Faculty faculty) {
+		if(faculty!=null) {
+			this.faculty = faculty;
+		}
+		else {
+			faculty = Faculty.other;
+		}
+		
+	}
+	
 	
 	
 	
