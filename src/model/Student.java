@@ -16,4 +16,30 @@ public class Student {
 		name = nameIn;
 		surname = surnameIn;
 	}
+
+	public long getSt_id() {
+		return st_id;
+	}
+
+	public void setSt_id(long st_id) {
+		this.st_id = st_id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getSurname() {
+		return surname;
+	}
+
+	public void setSurname(String surname) {
+		this.surname = surname;
+	}
+	
+	
 }

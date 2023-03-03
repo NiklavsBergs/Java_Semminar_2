@@ -19,4 +19,38 @@ public class Grade {
 		student = studentIn;
 		course = courseIn;
 	}
+
+	public long getG_id() {
+		return g_id;
+	}
+
+	public void setG_id(long g_id) {
+		this.g_id = g_id;
+	}
+
+	public int getValue() {
+		return value;
+	}
+
+	public void setValue(int value) {
+		this.value = value;
+	}
+
+	public Student getStudent() {
+		return student;
+	}
+
+	public void setStudent(Student student) {
+		this.student = student;
+	}
+
+	public Course getCourse() {
+		return course;
+	}
+
+	public void setCourse(Course course) {
+		this.course = course;
+	}
+	
+	
 }

@@ -20,4 +20,38 @@ public class Professor {
 		surname = surnameIn;
 		degree = degreeIn;
 	}
+
+	public long getP_id() {
+		return p_id;
+	}
+
+	public void setP_id(long p_id) {
+		this.p_id = p_id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getSurname() {
+		return surname;
+	}
+
+	public void setSurname(String surname) {
+		this.surname = surname;
+	}
+
+	public String getDegree() {
+		return degree;
+	}
+
+	public void setDegree(String degree) {
+		this.degree = degree;
+	}
+	
+	
 }
