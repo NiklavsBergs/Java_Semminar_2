@@ -4,23 +4,23 @@ public class Professor {
 	private long id;
 	private String name;
 	private String surname;
-	private String degree;
+	private Degree degree;
 	
-	private static long idCounter = 0;
+	private static long idCounter = 10000;
 	
 	
 	public Professor() {
 		setId();
 		setName("Unknown");
 		setSurname("Unknown");
-		degree = "Unknown";
+		setDegree(Degree.other);
 	}
 	
-	public Professor(String name, String surname, String degreeIn) {
+	public Professor(String name, String surname, Degree degree) {
 		setId();
 		setName(name);
 		setSurname(surname);
-		degree = degreeIn;
+		setDegree(degree);
 	}
 
 	public long getId() {
@@ -58,12 +58,17 @@ public class Professor {
 		}
 	}
 
-	public String getDegree() {
+	public Degree getDegree() {
 		return degree;
 	}
 
-	public void setDegree(String degree) {
-		this.degree = degree;
+	public void setDegree(Degree degree) {
+		if(degree!=null) {
+			this.degree = degree;
+		}
+		else {
+			degree = Degree.other;
+		}
 	}
 	
 	public String toString() {

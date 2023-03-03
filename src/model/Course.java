@@ -1,34 +1,33 @@
 package model;
 
 public class Course {
-	private long c_id;
+	private long id;
 	private String title;
 	private int creditPoints;
 	private Professor professor;
-	private static long idCounter = 100000;
+	private static long idCounter = 0;
 	
 	public Course() {
-		c_id = idCounter;
-		title = "Nosaukums";
-		creditPoints = 1;
-		professor = new Professor();
-		idCounter++;
+		setId();
+		setTitle("Nosaukums");
+		setCreditPoints(1);
+		setProfessor(new Professor());
 	}
 	
-	public Course(long c_idIn, String title, int creditPointsIn, Professor professorIn) {
-		c_id = idCounter;
-		title = "Nosaukums";
-		creditPoints = 1;
-		professor = professorIn;
+	public Course(String title, int creditPoints, Professor professor) {
+		setId();
+		setTitle(title);
+		setCreditPoints(creditPoints);
+		setProfessor(new Professor());
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId() {
+		id = idCounter;
 		idCounter++;
-	}
-
-	public long getC_id() {
-		return c_id;
-	}
-
-	public void setC_id(long c_id) {
-		this.c_id = c_id;
 	}
 
 	public String getTitle() {
@@ -44,7 +43,12 @@ public class Course {
 	}
 
 	public void setCreditPoints(int creditPoints) {
-		this.creditPoints = creditPoints;
+		if(creditPoints >= 0 && creditPoints <= 4) {
+			this.creditPoints = creditPoints;
+		}
+		else {
+			this.creditPoints = 0;
+		}
 	}
 
 	public Professor getProfessor() {
