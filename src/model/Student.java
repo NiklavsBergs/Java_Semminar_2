@@ -10,19 +10,19 @@ public class Student {
 	private static long idCounter = 0;
 	
 	public Student() {
-		id = idCounter;
-		name = "Vards";
-		surname = "Uzvards";
-		personCode = "000000-00000";
-		idCounter++;
+		setId();
+		setName("Unknown");
+		setSurname("Unknown");
+		setFaculty(Faculty.other);
+		setPersonCode("000000-00000");
 	}
 	
-	public Student(String nameIn, String surnameIn, String personCodeIn) {
-		id = idCounter;
-		name = nameIn;
-		surname = surnameIn;
-		personCode = personCodeIn;
-		idCounter++;
+	public Student(String name, String surname, Faculty faculty, String personCode) {
+		setId();
+		setName(name);
+		setSurname(surname);
+		setFaculty(faculty);
+		setPersonCode(personCode);
 	}
 
 	public long getId() {
@@ -46,7 +46,6 @@ public class Student {
 		else {
 			this.name = "Unknown";
 		}
-		
 	}
 
 	public String getSurname() {
@@ -89,7 +88,9 @@ public class Student {
 		
 	}
 	
-	
+	public String toString() {
+		return "" + id + ": " + name + " " + surname + ", " + personCode + ", " + faculty;
+	}
 	
 	
 	

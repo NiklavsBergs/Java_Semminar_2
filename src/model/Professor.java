@@ -1,35 +1,35 @@
 package model;
 
 public class Professor {
-	private long p_id;
+	private long id;
 	private String name;
 	private String surname;
 	private String degree;
+	
 	private static long idCounter = 0;
 	
 	
 	public Professor() {
-		p_id = idCounter;
-		name = "Vards";
-		surname = "Uzvards";
-		degree = "Grāds";
-		idCounter++;
+		setId();
+		setName("Unknown");
+		setSurname("Unknown");
+		degree = "Unknown";
 	}
 	
-	public Professor(long p_idIn, String nameIn, String surnameIn, String degreeIn) {
-		p_id = idCounter;
-		name = nameIn;
-		surname = surnameIn;
+	public Professor(String name, String surname, String degreeIn) {
+		setId();
+		setName(name);
+		setSurname(surname);
 		degree = degreeIn;
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId() {
+		id = idCounter;
 		idCounter++;
-	}
-
-	public long getP_id() {
-		return p_id;
-	}
-
-	public void setP_id(long p_id) {
-		this.p_id = p_id;
 	}
 
 	public String getName() {
@@ -37,7 +37,12 @@ public class Professor {
 	}
 
 	public void setName(String name) {
-		this.name = name;
+		if(name!=null && name.matches("[A-ZĒŪĪĻĶĢŠĀČŅŽ]{1}[a-zēūīļķģšāčņž]+[ ]?([A-ZĒŪĪĻĶĢŠĀČŅŽ]{1}[a-zēūīļķģšāčņž]+)?")) {
+			this.name = name;
+		}
+		else {
+			this.name = "Unknown";
+		}
 	}
 
 	public String getSurname() {
@@ -45,7 +50,12 @@ public class Professor {
 	}
 
 	public void setSurname(String surname) {
-		this.surname = surname;
+		if(surname!=null && surname.matches("[A-ZĒŪĪĻĶĢŠĀČŅŽ]{1}[a-zēūīļķģšāčņž]+[-]?([A-ZĒŪĪĻĶĢŠĀČŅŽ]{1}[a-zēūīļķģšāčņž]+)?")) {
+			this.surname = surname;
+		}
+		else {
+			this.surname = "Unknown";
+		}
 	}
 
 	public String getDegree() {
@@ -56,5 +66,8 @@ public class Professor {
 		this.degree = degree;
 	}
 	
+	public String toString() {
+		return "" + id + ": " + name + " " + surname + ", " + degree;
+	}
 	
 }
