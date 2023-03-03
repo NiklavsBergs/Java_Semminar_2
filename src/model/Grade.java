@@ -5,19 +5,22 @@ public class Grade {
 	private int value;
 	private Student student;
 	private Course course;
+	private static long idCounter = 200000;
 	
 	public Grade() {
-		g_id = 0;
+		g_id = idCounter;
 		value = 0;
 		student = new Student();
 		course = new Course();
+		idCounter++;
 	}
 	
 	public Grade(long g_idIn, int valueIn, Student studentIn, Course courseIn) {
-		g_id = g_idIn;
+		g_id = idCounter;
 		value = valueIn;
 		student = studentIn;
 		course = courseIn;
+		idCounter++;
 	}
 
 	public long getG_id() {

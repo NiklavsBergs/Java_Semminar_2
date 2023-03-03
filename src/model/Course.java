@@ -5,19 +5,22 @@ public class Course {
 	private String title;
 	private int creditPoints;
 	private Professor professor;
+	private static long idCounter = 100000;
 	
 	public Course() {
-		c_id = 0;
+		c_id = idCounter;
 		title = "Nosaukums";
 		creditPoints = 1;
 		professor = new Professor();
+		idCounter++;
 	}
 	
 	public Course(long c_idIn, String title, int creditPointsIn, Professor professorIn) {
-		c_id = c_idIn;
+		c_id = idCounter;
 		title = "Nosaukums";
 		creditPoints = 1;
 		professor = professorIn;
+		idCounter++;
 	}
 
 	public long getC_id() {
