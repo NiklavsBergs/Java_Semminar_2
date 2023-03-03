@@ -1,4 +1,4 @@
-package service;
+package model;
 
 public class Course {
 	private long c_id;

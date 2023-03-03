@@ -1,4 +1,4 @@
-package service;
+package model;
 
 public class Student {
 	private long st_id;
