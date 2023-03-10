@@ -38,7 +38,7 @@ public class Grade {
 			this.value = value;
 		}
 		else {
-			this.value = 0;
+			this.value = 1;
 		}
 	}
 
@@ -66,6 +66,10 @@ public class Grade {
 		else {
 			this.course = new Course();
 		}
+	}
+	
+	public String toString() {
+		return "" + id + ": " + student.getName() + " " + student.getSurname() + ", " + course.getTitle() + ", " + value;
 	}
 	
 	
