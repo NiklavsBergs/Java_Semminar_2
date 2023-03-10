@@ -13,12 +13,13 @@ import model.Student;
 
 public class VeA_IS {
 
+	private static ArrayList<Professor> profList = new ArrayList<>();
+	private static ArrayList<Student> studList = new ArrayList<>();
+	private static ArrayList<Course> courseList = new ArrayList<>();
+	private static ArrayList<Grade> gradeList = new ArrayList<>();
+	
 	public static void main(String[] args) {
-		ArrayList<Professor> profList = new ArrayList<>();
-		ArrayList<Student> studList = new ArrayList<>();
-		ArrayList<Course> courseList = new ArrayList<>();
-		ArrayList<Grade> gradeList = new ArrayList<>();
-		
+	
 		Student st1 = new Student();
 		System.out.println(st1);
 		Student st2 = new Student("Jānis", "Ābols", Faculty.ITF, "121203-21662");
@@ -53,60 +54,81 @@ public class VeA_IS {
 		
 		gradeList.addAll(Arrays.asList(gradeMath, gradeEng, gradeEng2));
 		
-		System.out.println(averageGrade(st2, gradeList));
-		System.out.println(averageCourseGrade(c2, gradeList));
+		System.out.println();
+		System.out.println(averageGrade(st2));
+		System.out.println(averageCourseGrade(c2));
 		System.out.println(profCoureCount(pr2, courseList));
 		System.out.println();
 		
 		printList(gradeList);
 		System.out.println();
 		printList(studList);
-	}
-	
-	static double averageGrade(Student students, ArrayList<Grade> gradeList) {
-		long id = students.getId();
-		int sum = 0;
-		int count = 0;
+		System.out.println();
 		
-		for (int i=0; i<gradeList.size(); i++) {
-			if(gradeList.get(i).getStudent().getId() == id) {
-				sum += gradeList.get(i).getValue();
-				count++;
-			}
+		for(Student student : studList) {
+			System.out.println(student.getName() + ": " + averageGrade(student));
 		}
 		
-		return (double)sum / count;
+		System.out.println();
+		for(Course course : courseList) {
+			System.out.println(course.getTitle() + ": " + averageCourseGrade(course));
+		}
 	}
 	
-	static double averageGradeWeighted(Student students, ArrayList<Grade> gradeList) {
-		long id = students.getId();
-		int sum = 0;
-		int KP = 0;
-		
-		for (int i=0; i<gradeList.size(); i++) {
-			if(gradeList.get(i).getStudent().getId() == id) {
-				sum += gradeList.get(i).getValue() * gradeList.get(i).getCourse().getCreditPoints();
-				KP += gradeList.get(i).getCourse().getCreditPoints();
+	private static float averageGrade(Student student) {
+		if(student!=null) {
+			int sum = 0;
+			int count = 0;
+			
+			for (Grade grade : gradeList) {
+				if(grade.getStudent().equals(student)) {
+					sum += grade.getValue();
+					count++;
+				}
 			}
+			
+			return (float)sum / count;
+		}
+		else {
+			return 0;
 		}
 		
-		return (double)sum / KP;
+		
 	}
 	
-	static <T> void printList(ArrayList<T> list) {
+	private static double averageGradeWeighted(Student student) {
+		
+		if(student!=null) {
+			int sum = 0;
+			int KP = 0;
+			
+			for (Grade grade : gradeList) {
+				if(grade.getStudent().equals(student)) {
+					sum += grade.getValue() * grade.getCourse().getCreditPoints();
+					KP += grade.getCourse().getCreditPoints();
+				}
+			}
+			
+			return (float)sum / KP;
+		}
+		else {
+			return 0;
+		}
+	}
+	
+	private static <T> void printList(ArrayList<T> list) {
 		for (int i=0; i<list.size(); i++) {
 			System.out.println(list.get(i));
 		}
 	}
 	
-	static double averageCourseGrade(Course course, ArrayList<Grade> gradeList) {
-		long id = course.getId();
+	private static double averageCourseGrade(Course course) {
 		int sum = 0;
 		int count = 0;
 		
-		for (int i=0; i<gradeList.size(); i++) {
-			if(gradeList.get(i).getCourse().getId() == id) {
-				sum += gradeList.get(i).getValue();
+		for (Grade grade : gradeList) {
+			if(grade.getCourse().equals(course)) {
+				sum += grade.getValue();
 				count++;
 			}
 		}
@@ -114,7 +136,7 @@ public class VeA_IS {
 		return (double)sum / count;
 	}
 	
-	static int profCoureCount(Professor professor, ArrayList<Course> courseList) {
+	private static int profCoureCount(Professor professor, ArrayList<Course> courseList) {
 		long id = professor.getId();
 		int count = 0;
 		
