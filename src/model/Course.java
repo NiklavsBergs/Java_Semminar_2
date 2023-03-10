@@ -4,6 +4,7 @@ public class Course {
 	private long id;
 	private String title;
 	private int creditPoints;
+	private CourseGradeType type;
 	private Professor professor;
 	private static long idCounter = 0;
 	
@@ -11,14 +12,16 @@ public class Course {
 		setId();
 		setTitle("Nosaukums");
 		setCreditPoints(1);
+		setType(CourseGradeType.other);
 		setProfessor(new Professor());
 	}
 	
-	public Course(String title, int creditPoints, Professor professor) {
+	public Course(String title, int creditPoints, CourseGradeType type, Professor professor) {
 		setId();
 		setTitle(title);
 		setCreditPoints(creditPoints);
-		setProfessor(new Professor());
+		setType(type);
+		setProfessor(professor);
 	}
 
 	public long getId() {
@@ -35,7 +38,12 @@ public class Course {
 	}
 
 	public void setTitle(String title) {
-		this.title = title;
+		if(title!=null && title.matches("[A-Z]{1}[a-zA-Z0-9\\sa-zēūīļķģšāčņžA-ZĒŪĪĻĶĢŠĀČŅŽ]+")) {
+			this.title = title;
+		}
+		else {
+			this.title = "Unknown";
+		}
 	}
 
 	public int getCreditPoints() {
@@ -43,12 +51,26 @@ public class Course {
 	}
 
 	public void setCreditPoints(int creditPoints) {
-		if(creditPoints >= 0 && creditPoints <= 4) {
+		if(creditPoints > 0 && creditPoints < 21) {
 			this.creditPoints = creditPoints;
 		}
 		else {
 			this.creditPoints = 0;
 		}
+	}
+	
+	public CourseGradeType getType() {
+		return type;
+	}
+	
+	public void setType(CourseGradeType type) {
+		if (type!=null) {
+			this.type = type;
+		}
+		else {
+			this.type = CourseGradeType.other;
+		}
+		
 	}
 
 	public Professor getProfessor() {
@@ -56,8 +78,16 @@ public class Course {
 	}
 
 	public void setProfessor(Professor professor) {
-		this.professor = professor;
+		if (type!=null) {
+			this.professor = professor;
+		}
+		else {
+			this.professor = new Professor();
+		}
+		
 	}
 	
-	
+	public String toString() {
+		return "" + id + ": " + title + " " + creditPoints + "KP";
+	}
 }
